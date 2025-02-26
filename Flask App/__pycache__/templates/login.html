@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .show-password {
+            cursor: pointer;
+            color: #00d9ff;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <form method="post">
+        <h2>Login</h2>
+        <input type="email" name="email" placeholder="Email" required>
+        <div>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <span class="show-password" onclick="togglePassword()">Show</span>
+        </div>
+        <button type="submit">Login</button>
+        <a href="{{ url_for('forgot_password') }}">Forgot Password?</a>
+        <br>
+        Don't have an account?
+        <a href="{{ url_for('register') }}">Register</a>
+    </form>
+
+    <script>
+        function togglePassword() {
+            var passwordField = document.getElementById("password");
+            var showPasswordText = document.querySelector(".show-password");
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                showPasswordText.textContent = "Hide password";
+            } else {
+                passwordField.type = "password";
+                showPasswordText.textContent = "Show password";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <form method="post">
+        <h2>Enter Contact Details</h2>
+        <input type="text" name="mobile" placeholder="Mobile Phone" required>
+        <input type="text" name="address" placeholder="Address" required>
+        <input type="text" name="registration_number" placeholder="Registration Number" required>
+        <button type="submit">Save</button>
+    </form>
+
+    <h2 class="search-contact">Search Contact</h2>
+    <form method="post" action="{{ url_for('search') }}">
+        <input type="text" name="registration_number" placeholder="Enter Registration Number" required>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if contact %}
+        <div class="contact-results">
+        <h3>Contact Found:</h3>
+        <p>Mobile: {{ contact.mobile }}</p>
+        <p>Email: {{ contact.email }}</p>
+        <p>Address: {{ contact.address }}</p></div>
+    {% endif %}
+</body>
+</html>
